@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    Banco de Horas
+    <br>
+    <!-- o objeto object_list ja esta injetado neste momento-->
+    {% for registro_re in object_list %}
+        {{ registro_re }}
+    {% endfor %}
+{% endblock %}

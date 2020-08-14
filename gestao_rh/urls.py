@@ -13,9 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('apps.core.urls')),
+    path('funcionarios/', include('apps.funcionarios.urls')),
+    path('departamentos/', include('apps.departamentos.urls')),
+    path('empresa/', include('apps.empresas.urls')),
+    path('documentos/', include('apps.documentos.urls')),
+    path('horas-extras/', include('apps.registro_hora_extra.urls')),
     path('admin/', admin.site.urls),
-]
+    path('accounts/', include('django.contrib.auth.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+'''
+static(settings, etc) é uma gambiarra para em ambiente de desenvolvimento ver o arquivo upado
+'''
