@@ -8,5 +8,10 @@
         {{ form|bootstrap }}
 
         <button type="submit" class="btn btn-primary">Salvar</button>
+
+        <!-- se estiver em modo de adicao tenho que testar o objeto existente-->
+        {% if object  %}
+            <a href="{% url 'delete_hora_extra' object.id %}'"  class='btn btn-danger'>Deletar</a><br>
+        {% endif %}
     </form>
 {% endblock %}
