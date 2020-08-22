@@ -5,13 +5,15 @@
     <br>
     <!-- o objeto object_list ja esta injetado neste momento-->
     {% for registro_re in object_list %}
-        <a href="{% url 'update_hora_extra' registro_re.id %}">{{ registro_re }}</a>
+        <a href="{% url 'update_hora_extra_base' registro_re.id %}">{{ registro_re }}</a>
         <a href="{% url 'delete_hora_extra' registro_re.id %}">Deletar</a><br>
     {% endfor %}
 
     {% if not object_list %}
-        <h3>Não existem registro de horas extras no banco de dadoss</h3>
+        <h3>Não existem registro de horas extras no banco de dados</h3>
     {% endif %}
 
     <a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
+    <a href="{% url 'exportar_csv' %}" class="btn btn-warning">Exportar Csv</a>
+    <a href="{% url 'exportar_excel' %}" class="btn btn-warning">Exportar Excel</a>
 {% endblock %}

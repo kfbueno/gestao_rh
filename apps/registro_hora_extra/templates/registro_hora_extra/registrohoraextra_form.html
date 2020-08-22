@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap %}
 
 {% block main %}
@@ -11,7 +12,21 @@
 
         <!-- se estiver em modo de adicao tenho que testar o objeto existente-->
         {% if object  %}
-            <a href="{% url 'delete_hora_extra' object.id %}'"  class='btn btn-danger'>Deletar</a><br>
+            <a href="{% url 'delete_hora_extra' object.id %}'"  class='btn btn-danger'>Deletar</a>
+
+            <!-- o botao sempre envia submit, para nao dar refresh no form mudo o type para button -->
+            <button onclick="utilizouHoraExtra({{ object.id }})" class="btn btn-info"
+                    type="button">Marcar como Utilizada
+            </button>
         {% endif %}
     </form>
+    <br>
+    <p id="mensagem"></p>
+    <br>
+    <h2 id="horas_atualizadas">{{ object.funcionario.total_horas_extras }}</h2>
+{% endblock %}
+
+{% block static %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/funcoes-ajax.js' %}"></script>
 {% endblock %}

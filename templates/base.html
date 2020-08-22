@@ -8,11 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
+    {% block staticcss %}
+
+    {% endblock %}
+
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
     <div class="container">
         {% block main %} {% endblock %}
     </div>
+
+    <!-- bloco para o jquery ajax -->
+    {% block static %}
+    {% endblock %}
 </body>
 </html>

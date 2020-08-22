@@ -11,4 +11,12 @@
     {% endfor %}
 
     <a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
+    <a href="{% url 'relatorio_funcionarios' %}" class="btn btn-warning">
+        Relatorio de Funcionarios
+    </a>
+
+    <!-- relatorio em pdf a partir de html-->
+    <a href="{% url 'relatorio_funcionarios_html' %}" class="btn btn-warning">
+        Relatorio de Funcionarios HTML
+    </a>
 {% endblock %}
