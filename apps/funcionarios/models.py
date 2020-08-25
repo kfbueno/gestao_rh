@@ -11,6 +11,7 @@ class Funcionario(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)    # Protect nao apaga em cascata
     departamentos = models.ManyToManyField(Departamentos)   # foreingkey de um para n
     empresa = models.ForeignKey(Empresa, on_delete=models.PROTECT, null=True, blank=True)
+    imagem = models.ImageField()
 
     def get_absolute_url(self):
         return reverse('list_funcionarios')
