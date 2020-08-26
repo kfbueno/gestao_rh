@@ -155,5 +155,11 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
-
+# servidor de email
+EMAIL_HOST = 'smtp.globo.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'kfbueno@globo.com'
+EMAIL_HOST_PASSWORD = '@kfb05121972@'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
