@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_celery_results',
     'django_celery_beat',
+    'apps.app_antiga',
 ]
 
 MIDDLEWARE = [
@@ -87,14 +88,6 @@ WSGI_APPLICATION = 'gestao_rh.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -154,16 +147,15 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
 CELERY_RESULT_BACKEND = 'django-db'
-CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
-# servidor de email
-EMAIL_HOST = 'smtp.globo.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'kfbueno@globo.com'
-EMAIL_HOST_PASSWORD = '@kfb05121972@'
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+
+
+# Registro de Rota do Banco de Dados
+DATABASE_ROUTERS = ['gestao_rh.DbRoutes.DBRoutes']
+
+# importo o arquivo extendido de settings com as configuracoes de banco de dados e etc
+from .local_settings import *
 
