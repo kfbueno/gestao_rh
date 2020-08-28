@@ -25,7 +25,10 @@ SECRET_KEY = 'z!^)n%e4@tjl!bomuj=(4409c8brkt2(yq$ybh2h3(w5nh$zp#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['54.232.172.216', '127.0.0.1']
+ALLOWED_HOSTS = ['54.232.172.216',
+                 '127.0.0.1',
+                 'gestaorh.devcon.com.br'
+]
 
 # '127.0.0.1'
 
