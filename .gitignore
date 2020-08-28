@@ -6,3 +6,9 @@ gestao_rh/__pycache__/
 gestao_rh.pem
 media
 static
+uwsgi.ini
+uwsgi_params
+*.bak
+*.dat
+*.pid
+*.dir
