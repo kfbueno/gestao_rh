@@ -10,9 +10,10 @@
         <a href="{% url 'delete_funcionario' funcionario.id %}">Deletar</a><br>
     {% endfor %}
 
-    <a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
+<!--create_hora_extra-->
+    <a href="{% url 'create_funcionario' %}" class="btn btn-info">Novo</a>
     <a href="{% url 'relatorio_funcionarios' %}" class="btn btn-warning">
-        Relatorio de Funcionarios
+        {{ report_button }}
     </a>
 
     <!-- relatorio em pdf a partir de html-->

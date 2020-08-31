@@ -28,6 +28,9 @@ from apps.registro_hora_extra.api.views import RegistroHoraExtraViewSet
 from rest_framework import routers
 from apps.core import views
 
+# import url translate
+from django.conf.urls.i18n import i18n_patterns
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
@@ -35,18 +38,21 @@ router.register(r'api/funcionarios', FuncionarioViewSet)
 router.register(r'api/banco-horas', RegistroHoraExtraViewSet)
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+
+urlpatterns += i18n_patterns(
     path('', include('apps.core.urls')),
     path('funcionarios/', include('apps.funcionarios.urls')),
     path('departamentos/', include('apps.departamentos.urls')),
     path('empresa/', include('apps.empresas.urls')),
     path('documentos/', include('apps.documentos.urls')),
     path('horas-extras/', include('apps.registro_hora_extra.urls')),
-    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''
 static(settings, etc) é uma gambiarra para em ambiente de desenvolvimento ver o arquivo upado

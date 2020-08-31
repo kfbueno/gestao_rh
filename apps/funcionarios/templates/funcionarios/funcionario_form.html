@@ -19,7 +19,14 @@
            </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'create_documento' object.id%}" class="btn btn-success">Adicionar Documento</a>
+
+    {% if object %}
+        <a href="{% url 'create_documento' object.id %}" class="btn btn-success">
+            Adicionar documento
+        </a>
+    {% endif %}
+
+    <br>
 
     <!--banco de horas-->
     <h2>Banco de Horas</h2>
@@ -28,7 +35,7 @@
         {% for registro_hora in object.registrohoraextra_set.all %}
             <li>
                 <a href="{% url 'update_hora_extra' registro_hora.id %}">
-                    {{ registro_hora.motivo }} | {{ registro_hora.horas }}
+                    {{ registro_hora.motivo }} | {{ registro_hora.horas }} <br>
                 </a>
                 <br>
             </li>

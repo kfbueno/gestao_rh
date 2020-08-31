@@ -16,6 +16,10 @@
 </head>
 <body>
     <div class="container">
+        {% block menu %}
+            {% include 'menu.html' %}
+        {% endblock %}
+
         {% block main %} {% endblock %}
     </div>
 

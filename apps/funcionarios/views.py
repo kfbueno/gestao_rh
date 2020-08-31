@@ -14,6 +14,9 @@ from .models import Funcionario
 from django.template.loader import get_template
 import xhtml2pdf.pisa as pisa
 
+# para translate
+from django.utils.translation import gettext as _
+
 # Create your views here.
 
 
@@ -24,6 +27,11 @@ class FuncionariosList(ListView):
         reescreve ou subscreve uma funcao ja existente do django onde devera retornar somente os 
         funconarios referentes a empresa logada
     '''
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['report_button'] = _("Employee report")
+        return context
+
 
     def get_queryset(self):
         empresa_logada = self.request.user.funcionario.empresa
@@ -56,6 +64,7 @@ class FuncionarioNovo(CreateView):
         funcionario.user = User.objects.create(username= username)
         funcionario.save()
         return super(FuncionarioNovo, self).form_valid(form)
+
 
 def relatorio_funcionarios(request):
     response = HttpResponse(content_type='application/pdf')
