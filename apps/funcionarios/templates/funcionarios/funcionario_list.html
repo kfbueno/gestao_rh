@@ -1,23 +1,48 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    List
     <br>
-    <!-- o objeto object_list ja esta injetado neste momento-->
-    {% for funcionario in object_list %}
-        <a href="{% url 'update_funcionario' funcionario.id %}">{{ funcionario }}</a>
 
-        <a href="{% url 'delete_funcionario' funcionario.id %}">Deletar</a><br>
-    {% endfor %}
+    <div class="container">
+        <h3>Lista de Funcionários</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Funcionário</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for funcionario in object_list %}
+                            <tr>
+                                <th scope="row">{{ funcionario.id }}</th>
+                                <td>{{ funcionario.nome }}</td>
+                                <td><a href="{% url 'update_funcionario' funcionario.id %}"
+                                       class="btn btn-primary"</a>Alterar</td>
+                                <td><a href="{% url 'delete_funcionario' funcionario.id %}"
+                                       class="btn btn-danger">Deletar</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-<!--create_hora_extra-->
-    <a href="{% url 'create_funcionario' %}" class="btn btn-info">Novo</a>
-    <a href="{% url 'relatorio_funcionarios' %}" class="btn btn-warning">
-        {{ report_button }}
-    </a>
+        </div>
 
-    <!-- relatorio em pdf a partir de html-->
-    <a href="{% url 'relatorio_funcionarios_html' %}" class="btn btn-warning">
-        Relatorio de Funcionarios HTML
-    </a>
+        <a href="{% url 'create_funcionario' %}" class="btn btn-info">Novo</a>
+        <a href="{% url 'relatorio_funcionarios' %}" class="btn btn-warning">
+            {{ report_button }}
+        </a>
+
+        <!-- relatorio em pdf a partir de html-->
+        <a href="{% url 'relatorio_funcionarios_html' %}" class="btn btn-warning">
+            Relatorio de Funcionarios HTML
+        </a>
+    </div>
+<br>
+
 {% endblock %}

@@ -1,19 +1,44 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    Banco de Horas
     <br>
-    <!-- o objeto object_list ja esta injetado neste momento-->
-    {% for registro_re in object_list %}
-        <a href="{% url 'update_hora_extra_base' registro_re.id %}">{{ registro_re }}</a>
-        <a href="{% url 'delete_hora_extra' registro_re.id %}">Deletar</a><br>
-    {% endfor %}
+    <div class="container">
+        <h3>Banco de Horas</h3>
 
-    {% if not object_list %}
-        <h3>Não existem registro de horas extras no banco de dados</h3>
-    {% endif %}
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Hora Extra</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- o objeto object_list ja esta injetado neste momento-->
+                        {% for registro_re in object_list %}
+                            <tr>
+                                <th scope="row">{{ registro_re.id }}</th>
+                                <td>{{ registro_re }}</td>
+                                <td><a href="{% url 'update_hora_extra_base' registro_re.id %}"
+                                       class="btn btn-primary"</a>Alterar</td>
+                                <td><a href="{% url 'delete_hora_extra' registro_re.id %}"
+                                       class="btn btn-danger">Deletar</a></td>
+                            </tr>
+                        {% endfor %}
 
-    <a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
-    <a href="{% url 'exportar_csv' %}" class="btn btn-warning">Exportar Csv</a>
-    <a href="{% url 'exportar_excel' %}" class="btn btn-warning">Exportar Excel</a>
+                        {% if not object_list %}
+                            <h3>Não existem registro de horas extras no banco de dados</h3>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <a href="{% url 'create_hora_extra' %}" class="btn btn-info">Novo</a>
+        <a href="{% url 'exportar_csv' %}" class="btn btn-warning">Exportar Csv</a>
+        <a href="{% url 'exportar_excel' %}" class="btn btn-warning">Exportar Excel</a>
+    </div>
 {% endblock %}

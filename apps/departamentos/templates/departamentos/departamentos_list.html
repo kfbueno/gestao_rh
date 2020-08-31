@@ -1,14 +1,37 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    List
     <br>
-    <!-- o objeto object_list ja esta injetado neste momento-->
-    {% for departamento in object_list %}
-        <a href="{% url 'update_departamento' departamento.id %}">{{ departamento }}</a>
+    <div class="container">
+        <h3>Lista de Departamentos</h3>
 
-        <a href="{% url 'delete_departamento' departamento.id %}">Deletar</a><br>
-    {% endfor %}
-
-    <a href="{% url 'create_departamento' %}" class="btn btn-info">Novo</a>
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- o objeto object_list ja esta injetado neste momento-->
+                        {% for departamento in object_list %}
+                            <tr>
+                                <th scope="row">{{ departamento.id }}</th>
+                                <td>{{ departamento.nome }}</td>
+                                <td><a href="{% url 'update_departamento' departamento.id %}"
+                                       class="btn btn-primary"</a>Alterar</td>
+                                <td><a href="{% url 'delete_departamento' departamento.id %}"
+                                       class="btn btn-danger">Deletar</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <a href="{% url 'create_departamento' %}" class="btn btn-info">Novo</a>
+    </div>
 {% endblock %}
